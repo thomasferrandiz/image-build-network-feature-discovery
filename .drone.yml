@@ -32,7 +32,9 @@ steps:
     path: /var/run/docker.sock
   when:
     event:
-    - tag
+      - tag
+    instance:
+      - drone-publish.rancher.io
 
 - name: scan
   image: rancher/hardened-build-base:v1.18.5b7
@@ -66,7 +68,9 @@ steps:
     ignore_missing: true
   when:
     event:
-    - tag
+      - tag
+    instance:
+      - drone-publish.rancher.io
 depends_on:
 - linux-amd64
 ...
