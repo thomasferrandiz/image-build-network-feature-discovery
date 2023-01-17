@@ -1,10 +1,10 @@
-ARG BUILDER_IMAGE=rancher/hardened-build-base:v1.18.5b7
+ARG BUILDER_IMAGE=rancher/hardened-build-base:v1.19.4b1
 ARG BASE_IMAGE_MINIMAL=registry.suse.com/bci/bci-micro:latest
 
 ######
 FROM ${BUILDER_IMAGE} as builder
 # Build and install the grpc-health-probe binary
-ENV GRPC_HEALTH_PROBE_VERSION=v0.4.6
+ENV GRPC_HEALTH_PROBE_VERSION=v0.4.14
 ARG GHP_PKG="github.com/grpc-ecosystem/grpc-health-probe"
 RUN git clone --depth=1 https://${GHP_PKG} $GOPATH/src/${GHP_PKG}
 WORKDIR $GOPATH/src/${GHP_PKG}
@@ -16,7 +16,7 @@ RUN go-assert-boring.sh bin/*
 
 # Build node feature discovery
 ARG ARCH="amd64"
-ARG TAG="v0.11.2"
+ARG TAG="v0.12.0"
 ARG PKG="github.com/kubernetes-sigs/node-feature-discovery"
 RUN git clone --depth=1 https://${PKG}.git $GOPATH/src/${PKG}
 WORKDIR $GOPATH/src/${PKG}
@@ -26,8 +26,8 @@ RUN go mod download
 
 # Do actual build
 ARG K8S_NAMESPACE=node-feature-discovery
-ARG IMAGE_REGISTRY=thomasferrandiz
-RUN ./scripts/kustomize.sh ${K8S_NAMESPACE} ${IMAGE_REGISTRY}/node-feature-discovery ${TAG}
+ARG IMAGE_REGISTRY=rancher
+RUN ./hack/kustomize.sh ${K8S_NAMESPACE} ${IMAGE_REGISTRY}/node-feature-discovery ${TAG}
 ENV GO_LDFLAGS="-X sigs.k8s.io/node-feature-discovery/pkg/version.version=${TAG}"
 ENV GO111MODULE=on
 RUN go-build-static.sh -gcflags=-trimpath=${GOPATH}/src -o bin/ ./cmd/... 
