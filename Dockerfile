@@ -1,4 +1,4 @@
-ARG BUILDER_IMAGE=rancher/hardened-build-base:v1.19.4b1
+ARG BUILDER_IMAGE=rancher/hardened-build-base:v1.19.5b1
 ARG BASE_IMAGE_MINIMAL=registry.suse.com/bci/bci-micro:latest
 
 ######
@@ -16,7 +16,7 @@ RUN go-assert-boring.sh bin/*
 
 # Build node feature discovery
 ARG ARCH="amd64"
-ARG TAG="v0.12.0"
+ARG TAG="v0.12.1"
 ARG PKG="github.com/kubernetes-sigs/node-feature-discovery"
 RUN git clone --depth=1 https://${PKG}.git $GOPATH/src/${PKG}
 WORKDIR $GOPATH/src/${PKG}
