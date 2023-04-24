@@ -1,10 +1,10 @@
-ARG BUILDER_IMAGE=rancher/hardened-build-base:v1.19.5b1
+ARG BUILDER_IMAGE=rancher/hardened-build-base:v1.20.3b1
 ARG BASE_IMAGE_MINIMAL=registry.suse.com/bci/bci-micro:latest
 
 ######
 FROM ${BUILDER_IMAGE} as builder
 # Build and install the grpc-health-probe binary
-ENV GRPC_HEALTH_PROBE_VERSION=v0.4.14
+ENV GRPC_HEALTH_PROBE_VERSION=v0.4.18
 ARG GHP_PKG="github.com/grpc-ecosystem/grpc-health-probe"
 RUN git clone --depth=1 https://${GHP_PKG} $GOPATH/src/${GHP_PKG}
 WORKDIR $GOPATH/src/${GHP_PKG}
@@ -16,7 +16,7 @@ RUN go-assert-boring.sh bin/*
 
 # Build node feature discovery
 ARG ARCH="amd64"
-ARG TAG="v0.12.1"
+ARG TAG="v0.13.0"
 ARG PKG="github.com/kubernetes-sigs/node-feature-discovery"
 RUN git clone --depth=1 https://${PKG}.git $GOPATH/src/${PKG}
 WORKDIR $GOPATH/src/${PKG}
