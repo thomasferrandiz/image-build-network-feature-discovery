@@ -16,7 +16,7 @@ RUN go-assert-boring.sh bin/*
 
 # Build node feature discovery
 ARG ARCH="amd64"
-ARG TAG="v0.13.1"
+ARG TAG="v0.13.2"
 ARG PKG="github.com/kubernetes-sigs/node-feature-discovery"
 RUN git clone --depth=1 https://${PKG}.git $GOPATH/src/${PKG}
 WORKDIR $GOPATH/src/${PKG}
@@ -28,7 +28,7 @@ RUN go mod download
 ARG K8S_NAMESPACE=node-feature-discovery
 ARG IMAGE_REGISTRY=rancher
 RUN ./hack/kustomize.sh ${K8S_NAMESPACE} ${IMAGE_REGISTRY}/node-feature-discovery ${TAG}
-ENV GO_LDFLAGS="-X sigs.k8s.io/node-feature-discovery/pkg/version.version=${TAG}"
+ENV GO_LDFLAGS="-X sigs.k8s.io/node-feature-discovery/pkg/version.version=${TAG} -X sigs.k8s.io/node-feature-discovery/pkg/utils/hostpath.pathPrefix=/host-"
 ENV GO111MODULE=on
 RUN go-build-static.sh -gcflags=-trimpath=${GOPATH}/src -o bin/ ./cmd/... 
 RUN go-assert-static.sh bin/*
