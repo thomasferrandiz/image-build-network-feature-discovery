@@ -8,7 +8,7 @@ BUILD_META=-build$(shell date +%Y%m%d)
 ORG ?= rancher
 PKG ?= "github.com/kubernetes-sigs/node-feature-discovery"
 SRC ?= "github.com/kubernetes-sigs/node-feature-discovery"
-TAG ?= v0.13.2$(BUILD_META)
+TAG ?= v0.13.3$(BUILD_META)
 
 ifneq ($(DRONE_TAG),)
 TAG := $(DRONE_TAG)
@@ -44,4 +44,4 @@ image-manifest:
 
 .PHONY: image-scan
 image-scan:
-	trivy --severity $(SEVERITIES) --no-progress --ignore-unfixed $(ORG)/hardened-node-feature-discovery:$(TAG)
+	trivy --severity $(SEVERITIES) --no-progress --ignore-unfixed image $(ORG)/hardened-node-feature-discovery:$(TAG)
