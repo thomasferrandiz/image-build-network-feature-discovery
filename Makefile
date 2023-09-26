@@ -8,7 +8,7 @@ BUILD_META=-build$(shell date +%Y%m%d)
 ORG ?= rancher
 PKG ?= "github.com/kubernetes-sigs/node-feature-discovery"
 SRC ?= "github.com/kubernetes-sigs/node-feature-discovery"
-TAG ?= v0.13.3$(BUILD_META)
+TAG ?= v0.14.0$(BUILD_META)
 
 ifneq ($(DRONE_TAG),)
 TAG := $(DRONE_TAG)
