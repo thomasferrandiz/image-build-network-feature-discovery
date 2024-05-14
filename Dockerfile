@@ -1,8 +1,8 @@
-ARG BUILDER_IMAGE=rancher/hardened-build-base:v1.22.2b1
+ARG GO_IMAGE=rancher/hardened-build-base:v1.22.2b1
 ARG BASE_IMAGE_MINIMAL=registry.suse.com/bci/bci-micro:latest
 
 ######
-FROM ${BUILDER_IMAGE} as builder
+FROM ${GO_IMAGE} as builder
 # Build and install the grpc-health-probe binary
 ENV GRPC_HEALTH_PROBE_VERSION=v0.4.18
 ARG GHP_PKG="github.com/grpc-ecosystem/grpc-health-probe"
