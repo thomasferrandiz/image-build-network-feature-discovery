@@ -1,4 +1,4 @@
-ARG BUILDER_IMAGE=rancher/hardened-build-base:v1.22.2b1
+ARG BUILDER_IMAGE=rancher/hardened-build-base:v1.22.3b1
 ARG BASE_IMAGE_MINIMAL=registry.suse.com/bci/bci-micro:latest
 
 ######
