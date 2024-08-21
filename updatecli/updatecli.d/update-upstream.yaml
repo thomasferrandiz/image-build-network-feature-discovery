@@ -15,6 +15,7 @@ sources:
        prerelease: false
      versionfilter:
        kind: semver
+       pattern: "~0.15"
 
 targets:
   dockerfile:

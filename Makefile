@@ -17,7 +17,7 @@ SRC ?= "github.com/kubernetes-sigs/node-feature-discovery"
 TAG ?= ${GITHUB_ACTION_TAG}
 
 ifeq ($(TAG),)
-TAG := v0.16.4$(BUILD_META)
+TAG := v0.15.6$(BUILD_META)
 endif
 
 ifeq (,$(filter %$(BUILD_META),$(TAG)))

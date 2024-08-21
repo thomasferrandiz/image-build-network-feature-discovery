@@ -16,7 +16,7 @@ RUN go-assert-boring.sh bin/*
 
 # Build node feature discovery
 ARG ARCH="amd64"
-ARG TAG=v0.16.4
+ARG TAG=v0.15.6
 ARG PKG="github.com/kubernetes-sigs/node-feature-discovery"
 RUN git clone --depth=1 https://${PKG}.git $GOPATH/src/${PKG}
 WORKDIR $GOPATH/src/${PKG}
