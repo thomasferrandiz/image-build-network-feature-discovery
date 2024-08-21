@@ -2,7 +2,7 @@ ARG GO_IMAGE=rancher/hardened-build-base:v1.22.6b1
 ARG BASE_IMAGE_MINIMAL=registry.suse.com/bci/bci-micro:latest
 
 ######
-FROM ${GO_IMAGE} as builder
+FROM ${GO_IMAGE} AS builder
 # Build and install the grpc-health-probe binary
 ENV GRPC_HEALTH_PROBE_VERSION=v0.4.18
 ARG GHP_PKG="github.com/grpc-ecosystem/grpc-health-probe"
@@ -36,7 +36,7 @@ RUN go-assert-boring.sh bin/*
 
 ######
 # Create minimal variant of the production image
-FROM ${BASE_IMAGE_MINIMAL} as minimal
+FROM ${BASE_IMAGE_MINIMAL} AS minimal
 # Run as unprivileged user
 USER 65534:65534
 # Use more verbose logging of gRPC
