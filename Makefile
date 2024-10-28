@@ -31,7 +31,7 @@ REPO ?= rancher
 IMAGE ?= $(REPO)/hardened-node-feature-discovery:$(TAG)
 
 ifeq ($(TAG),)
-TAG := v0.15.6$(BUILD_META)
+TAG := v0.15.7$(BUILD_META)
 endif
 
 ifeq (,$(filter %$(BUILD_META),$(TAG)))
