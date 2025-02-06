@@ -81,7 +81,7 @@ jobs:
       uses: actions/create-github-app-token@v1
       id: app-token
       with:
-        repositories: release-multus-cni
+        repositories: release-node-feature-discovery
         app-id: ${{ env.APP_ID }}
         private-key: ${{ env.PRIVATE_KEY }}
 
